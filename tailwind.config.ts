@@ -15,7 +15,8 @@ const config = {
     extend: {
       backgroundImage: {
         striped:
-          "repeating-linear-gradient(45deg, #3B3A3D, #3B3A3D 5px, transparent 5px, transparent 20px)",
+          "repeating-linear-gradient(45deg, #3B3A3D 0px, #3B3A3D 5px, transparent 5px, transparent 20px)",
+        "custom-gradient": "linear-gradient(to left, rgba(136,127,242,0.7) 0%, transparent 100%)",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -171,6 +172,37 @@ const config = {
           "50%": { fill: "#a855f7", brightness: "500%" },
           "100%": { fill: "currentColor", brightness: "1" },
         },
+        glitch: {
+          "0%": {
+            color: "#fff",
+            textShadow: "2px 2px 0px #00ffff, -2px -2px 0px #ff00ff",
+          },
+          "25%": {
+            color: "#00ffff",
+            textShadow: "-2px -2px 0px #fff, 2px 2px 0px #ff00ff",
+          },
+          "50%": {
+            color: "#ff00ff",
+            textShadow: "2px -2px 0px #00ffff, -2px 2px 0px #fff",
+          },
+          "75%": {
+            color: "#eee",
+            textShadow: "-2px 2px 0px #ff00ff, 2px -2px 0px #00ffff",
+          },
+          "100%": {
+            color: "#fff",
+            textShadow: "2px 2px 0px #00ffff, -2px -2px 0px #ff00ff",
+          },
+        },
+        twinkle: {
+          "0%": { opacity: "0" },
+          "50%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-40px)" },
+        },
       },
       animation: {
         fill: "fill 1s forwards",
@@ -187,6 +219,7 @@ const config = {
         meteor: "meteor var(--duration) var(--delay) ease-in-out infinite",
         trail: "trail var(--duration) linear infinite",
         led: "led 100ms ease-in-out",
+        float: "float 3s ease-in-out infinite",
       },
       transitionTimingFunction: {
         slow: "cubic-bezier(.405, 0, .025, 1)",

@@ -4,11 +4,13 @@ import { notFound } from "next/navigation";
 import { allDocs } from "contentlayer/generated";
 import Balancer from "react-wrap-balancer";
 
+import NavMenu from "@/app/docs/[[...slug]]/nav-menu";
 import { Mdx } from "@/components/mdx-components";
 import { DocsPager } from "@/components/pager";
 import { DashboardTableOfContents } from "@/components/toc";
 import { badgeVariants } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { docsConfig } from "@/config/docs";
 import { siteConfig } from "@/config/site";
 import { getTableOfContents } from "@/lib/toc";
 import { absoluteUrl, cn } from "@/lib/utils";
@@ -63,7 +65,7 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
       title: doc.title,
       description: doc.description,
       images: [siteConfig.ogImage],
-      creator: "@animata.design",
+      creator: doc.author ? `@${doc.author}` : "@AnimataDesign",
     },
   };
 }
@@ -89,7 +91,11 @@ export default async function DocPage({ params }: DocPageProps) {
         <div className="mb-4 flex items-center space-x-1 text-sm text-muted-foreground">
           <div className="overflow-hidden text-ellipsis whitespace-nowrap">Docs</div>
           <ChevronRightIcon className="h-4 w-4" />
-          <div className="font-medium text-foreground">{doc.title}</div>
+          <NavMenu
+            baseRoute="docs"
+            sideBarNavItems={docsConfig.sidebarNav}
+            value={doc.slugAsParams}
+          />
         </div>
         <div className="space-y-2">
           <h1 className={cn("scroll-m-20 text-4xl font-bold tracking-tight")}>{doc.title}</h1>
